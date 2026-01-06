@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // basic config
 const app = express();
@@ -8,6 +9,8 @@ app.use(express.urlencoded({ extended: true, limit: "20kb" }))
 app.use(express.static("public"))// entire public folder is available to the browser
 
 // cors configurations
+
+app.use(cookieParser());
 
 app.use(cors(
     {

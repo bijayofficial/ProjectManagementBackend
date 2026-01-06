@@ -3,9 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
-
-
-
 const userSchema = new mongoose.Schema(
     {
         avatar: {
@@ -45,7 +42,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: [true, "Password is required"],
             minlength: 6,
-            select: false // password won't be returned by default
+            // select: false // password won't be returned by default
         },
 
         role: {
