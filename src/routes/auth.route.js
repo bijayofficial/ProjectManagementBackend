@@ -32,8 +32,6 @@ router.route("/verifyEmail").post(
     verifyJWT,
     verifyEmail)
 
-
-
 router.route("/verifyEmail").post(
     verifyJWT,
     resendVerifyEmail)

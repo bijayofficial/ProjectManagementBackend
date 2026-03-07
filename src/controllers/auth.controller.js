@@ -5,6 +5,7 @@ import { asyncHandler } from "../utils/async-handler.js";
 import mongoose from "mongoose";
 import { emailVerificationMailgenContent, sendEmail } from "../utils/mail.js"
 import jwt from "jsonwebtoken";
+
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
         const user = await User.findById(userId)
