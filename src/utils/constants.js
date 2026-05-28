@@ -1,15 +1,15 @@
-export  const UserRolersEnum = {
+export const UserRolersEnum = {
     ADMIN: 'ADMIN',
     PROJECT_ADMIN: 'ADMIN',
-    MEMBER:'MEMBER'
+    MEMBER: 'MEMBER'
 }
 
-export const AvailableuserRole = Object.values(UserRolersEnum);
+export const AvailableUserRole = Object.values(UserRolersEnum); // Object.values() extracts all values from the object into an array. ['ADMIN', 'PROJECT_ADMIN', 'MEMBER']
 
 export const TaskStatusEnum = {
-    TODO : "todo",
-    IN_PROGRESS : "in_progress",
-    DONE:"done"
+    TODO: "todo",
+    IN_PROGRESS: "in_progress",
+    DONE: "done"
 }
 
 export const TaskStatuses = Object.values(TaskStatusEnum);
