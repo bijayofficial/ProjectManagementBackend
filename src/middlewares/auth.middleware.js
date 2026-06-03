@@ -1,6 +1,7 @@
 import { User } from "../models/user.models.js";
 import { ApiError } from "../utils/api-error.js";
 import { asyncHandler } from "../utils/async-handler.js";
+import { ProjectMember } from "../models/project-member.models.js";
 import jwt from "jsonwebtoken";
 
 const verifyJWT = asyncHandler(async (req, res, next) => {
@@ -26,5 +27,33 @@ const verifyJWT = asyncHandler(async (req, res, next) => {
 
 });
 
+const validateProjectPermission = (roles = []) => {
+    asynchandler(async (req, res, next) => {
+        const { projectId } = req.params;
 
-export { verifyJWT };
+        if (!projectId) {
+            throw new ApiError(400, "Project ID is required.");
+        }
+        const project = await ProjectMember.findOne({
+            project: Mongoose.Types.ObjectId(projectId),
+            user: Mongoose.Types.ObjectId(req.user._id)
+        });
+
+        if (!project) {
+            throw new ApiError(403, "Project not found.");
+        }
+
+        const givenRole = project.role;
+
+        req.user.role = givenRole;
+
+        if (roles.length && !roles.includes(givenRole)) {
+            throw new ApiError(403, "Forbidden: You don't have permission to access this resource.");
+        }
+        next();
+
+    });
+}
+
+export { verifyJWT, validateProjectPermission }
+

@@ -244,9 +244,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user._id);
 
         user.refreshToken = refreshToken;
-
+        //  refresh token again save to DB
         await user.save();
-
+        // accesstoken sent to frontend
         return res.status(200).cookie("accessToken", accessToken, options).cookie("refreshToken", refresfToken, options).json(
             new ApiResponse(200,
                 {
