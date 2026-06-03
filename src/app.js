@@ -25,11 +25,11 @@ app.use(cors(
 
 import healthCheckRoute from "./routes/healthCheck.routes.js"
 import reginsterUserRoute from "./routes/auth.route.js";
-
+import projectRoute from "./routes/project.route.js";
 
 app.use("/api/v1/check", healthCheckRoute);
 app.use("/api/v1/auth", reginsterUserRoute);
-
+app.use("/api/v1/projects", projectRoute);
 
 
 export default app;
